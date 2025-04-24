@@ -1,0 +1,107 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { 
+  height: 100%; 
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Material Overrides */
+.mat-mdc-card {
+  @apply rounded-xl;
+}
+
+.mat-mdc-button {
+  @apply rounded-lg;
+}
+
+.mat-mdc-raised-button {
+  @apply rounded-lg;
+}
+
+.mat-mdc-stroked-button {
+  @apply rounded-lg;
+}
+
+.mat-mdc-chip {
+  @apply rounded-full;
+}
+
+/* Global Material Form Field Styles */
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-flex {
+  background-color: transparent !important;
+}
+
+.mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  background-color: transparent !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-infix {
+  padding: 0.5em 0 !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-subscript-wrapper {
+  padding: 0 !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-underline {
+  display: none !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-ripple {
+  display: none !important;
+}
+
+/* Input focus styles */
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-flex {
+  background-color: transparent !important;
+}
+
+/* Input hover styles */
+.mat-mdc-form-field:hover .mat-mdc-form-field-flex {
+  background-color: transparent !important;
+}
+
+/* Input text color */
+.mat-mdc-input-element {
+  color: inherit !important;
+}
+
+/* Label styles */
+.mat-mdc-form-field-label {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Error state styles */
+.mat-mdc-form-field.mat-form-field-invalid .mat-mdc-form-field-flex {
+  background-color: transparent !important;
+}
+
+/* Disabled state styles */
+.mat-mdc-form-field.mat-form-field-disabled .mat-mdc-form-field-flex {
+  background-color: transparent !important;
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,91 @@
+<div class="min-h-screen bg-gray-50 w-full">
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Loading State -->
+    <div *ngIf="loading" class="flex justify-center items-center h-64">
+      <mat-spinner diameter="48"></mat-spinner>
+    </div>
+
+    <!-- Error Message -->
+    <mat-card *ngIf="error" class="bg-red-50 border-l-4 border-red-500 p-4 mb-6" @fadeIn>
+      <div class="flex items-center">
+        <mat-icon class="text-red-500 mr-2">error</mat-icon>
+        <p class="text-sm text-red-700">{{ error }}</p>
+      </div>
+    </mat-card>
+
+    <!-- Main Content -->
+    <div *ngIf="!loading && !error" class="space-y-8">
+      <!-- Header -->
+      <mat-card class="p-8" @fadeIn>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900">Sprint Dashboard</h1>
+            <p class="text-gray-500 mt-2">Manage and track your sprints</p>
+          </div>
+          <button *ngIf="isAdmin"
+                  mat-raised-button
+                  color="primary"
+                  (click)="createNewSprint()"
+                  class="w-full md:w-auto"
+                  matTooltip="Create a new sprint">
+            <mat-icon class="mr-2">add</mat-icon>
+            Create New Sprint
+          </button>
+        </div>
+      </mat-card>
+
+      <!-- Sprints Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <mat-card *ngFor="let sprint of sprints" 
+                  class="hover:shadow-md transition-shadow duration-200"
+                  @fadeIn>
+          <mat-card-content class="p-6">
+            <div class="flex justify-between items-start mb-6">
+              <h2 class="text-xl font-semibold text-gray-900">{{ sprint.name }}</h2>
+              <span class="px-3 py-1 rounded-full text-xs font-medium"
+                    [class]="isSprintActive(sprint) ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'">
+                {{ isSprintActive(sprint) ? 'Active' : 'Completed' }}
+              </span>
+            </div>
+
+            <mat-divider class="mb-6"></mat-divider>
+
+            <div class="space-y-4 mb-6">
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-500">Start Date</span>
+                <span class="font-medium text-gray-900">{{ sprint.startDate | date:'mediumDate' }}</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-500">End Date</span>
+                <span class="font-medium text-gray-900">{{ sprint.endDate | date:'mediumDate' }}</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-500">User Stories</span>
+                <span class="font-medium text-gray-900">{{ sprint.userStories.length || 0 }}</span>
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <button mat-stroked-button
+                      (click)="viewSprintDetails(sprint.id)"
+                      class="w-full"
+                      matTooltip="View sprint details">
+                <mat-icon class="mr-2">visibility</mat-icon>
+                View Details
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Empty State -->
+      <mat-card *ngIf="sprints.length === 0" class="text-center p-12" @fadeIn>
+        <mat-card-content class="flex flex-col items-center">
+          <mat-icon class="text-gray-400 mb-4" style="font-size: 64px; height: 64px; width: 64px;">folder</mat-icon>
+          <h3 class="text-lg font-medium text-gray-900 mb-2">No sprints</h3>
+          <p class="text-gray-500">Get started by creating a new sprint using the button above.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div> 

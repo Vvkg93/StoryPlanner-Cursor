@@ -1,0 +1,6 @@
+@PlanItPoker.API_HostAddress = http://localhost:5150
+
+GET {{PlanItPoker.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
